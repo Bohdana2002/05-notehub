@@ -1,0 +1,3 @@
+//typization of ONE note
+
+// 
