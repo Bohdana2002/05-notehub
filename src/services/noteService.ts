@@ -6,7 +6,7 @@ axios.defaults.baseURL = "https://notehub-public.goit.study/api";
 export const fetchNotes = async (
   query: string,
   page: number,
-  perPage: number
+  perPage: number,
 ): Promise<NoteResponse> => {
   const { data } = await axios.get<NoteResponse>("/notes", {
     params: { search: query, page, perPage },

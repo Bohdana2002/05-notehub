@@ -4,8 +4,17 @@ interface SearchBoxProps {
   searchNote: (query: string) => void;
 }
 
-const SearchBox = ({searchNote}: SearchBoxProps) => {
-  return <input className={css.input} type="text" placeholder="Search notes" onChange={(e) => {searchNote(e.target.value)}}/>;
+const SearchBox = ({ searchNote }: SearchBoxProps) => {
+  return (
+    <input
+      className={css.input}
+      type="text"
+      placeholder="Search notes"
+      onChange={(e) => {
+        searchNote(e.target.value);
+      }}
+    />
+  );
 };
 export default SearchBox;
 

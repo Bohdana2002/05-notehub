@@ -7,16 +7,17 @@ import { fetchNotes } from "../../services/noteService";
 import { useState } from "react";
 import SearchBox from "../SearchBox/SearchBox";
 import { useDebouncedCallback } from "use-debounce";
+import Pagination from "../Pagination/Pagination";
 
 const App = () => {
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const { data, isError, isLoading } = useQuery({
-    queryKey: ["notes", query, currentPage],
-    queryFn: () => fetchNotes(query, currentPage),
-    enabled: query !== "",
+    queryKey: ["notes", query, currentPage, 12],
+    queryFn: () => fetchNotes(query, currentPage, 12),
     placeholderData: keepPreviousData,
   });
+  const totalPages = data?.totalPages ?? 0;
 
   const notes = data?.notes ?? [];
   const debouncedSearch = useDebouncedCallback((newQuery: string) => {
@@ -28,8 +29,14 @@ const App = () => {
       <div className={css.app}>
         <header className={css.toolbar}>
           <SearchBox searchNote={debouncedSearch} />
-          {/* Пагінація */}
-          {/* Кнопка створення нотатки */}
+          {totalPages > 1 && (
+            <Pagination
+              totalPages={totalPages}
+              currentPage={currentPage}
+              onPageChange={setCurrentPage}
+            />
+          )}
+          <button className={css.button}>Create note +</button>
         </header>
         {isLoading && <Loader />}
         {isError && <ErrorMessage />}
