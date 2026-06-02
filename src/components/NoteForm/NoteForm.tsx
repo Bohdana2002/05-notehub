@@ -26,7 +26,7 @@ const NoteOrderSchema = Yup.object().shape({
     .min(3, "The title must be at least 3 characters")
     .max(50, "The title is too long")
     .required("The title is required"),
-  content: Yup.string().max(500, "The content must be maximum 50 characters"),
+  content: Yup.string().max(500, "The content must be maximum 500 characters"),
   tag: Yup.string().oneOf(["Todo", "Work", "Personal", "Meeting", "Shopping"]),
 });
 const NoteForm = ({ onClose }: NoteFormProps) => {

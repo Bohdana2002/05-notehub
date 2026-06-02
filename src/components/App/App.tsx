@@ -9,6 +9,7 @@ import SearchBox from "../SearchBox/SearchBox";
 import { useDebouncedCallback } from "use-debounce";
 import Pagination from "../Pagination/Pagination";
 import Modal from "../Modal/Modal";
+import NoteForm from "../NoteForm/NoteForm";
 
 const App = () => {
   const [query, setQuery] = useState("");
@@ -45,7 +46,11 @@ const App = () => {
           <button className={css.button} onClick={openModal}>
             Create note +
           </button>
-          {isModalOpen && <Modal onClose={closeModal} />}
+          {isModalOpen && (
+            <Modal onClose={closeModal}>
+              <NoteForm onClose={closeModal} />
+            </Modal>
+          )}
         </header>
         {isLoading && <Loader />}
         {isError && <ErrorMessage />}

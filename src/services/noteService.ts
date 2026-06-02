@@ -1,7 +1,13 @@
 import axios from "axios";
-import type { Note, NoteData, NoteResponse } from "../types/note";
+import type { Note, NoteData } from "../types/note";
 
 axios.defaults.baseURL = "https://notehub-public.goit.study/api";
+
+//moved the noteresponse here per feedback
+export interface NoteResponse {
+  notes: Note[];
+  totalPages: number;
+}
 
 export const fetchNotes = async (
   query: string,

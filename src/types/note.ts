@@ -6,11 +6,6 @@ export interface Note {
   updatedAt: string;
   tag: string;
 }
-//typization of ONE note
-export interface NoteResponse {
-  notes: Note[];
-  totalPages: number;
-}
 
 export interface NoteData {
   title: string;
