@@ -21,13 +21,21 @@ export const fetchNotes = async (
 // added page for pagination + filter by the key word
 
 export const createNote = async (noteData: NoteData): Promise<Note> => {
-  const { data } = await axios.post<Note>("/notes", noteData);
+  const { data } = await axios.post<Note>("/notes", noteData, {
+    headers: {
+      Authorization: `Bearer ${import.meta.env.VITE_NOTEHUB_TOKEN}`,
+    },
+  });
   return data;
 };
 //function for creating a note
 
 export const deleteNote = async (id: Note["id"]): Promise<Note> => {
-  const { data } = await axios.delete<Note>(`/notes/${id}`);
+  const { data } = await axios.delete<Note>(`/notes/${id}`, {
+    headers: {
+      Authorization: `Bearer ${import.meta.env.VITE_NOTEHUB_TOKEN}`,
+    },
+  });
   return data;
 };
 // function to delete the note
